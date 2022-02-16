@@ -10,5 +10,5 @@ public class GarageContext : DbContext
     {
 
     }
-    public DbSet<Garage3._0.Web.Models.Entities.VehicleEntities> VehicleEntities { get; set; }
+    public DbSet<Garage3._0.Web.Models.Entities.VehicleTypeEntities> VehicleTypeEntities { get; set; }
 }

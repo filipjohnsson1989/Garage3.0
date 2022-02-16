@@ -11,22 +11,22 @@ using Garage3._0.Web.Models.Entities;
 
 namespace Garage3._0.Web.Models.ViewModels
 {
-    public class VehicleEntitiesController : Controller
+    public class VehicleTypeEntitiesController : Controller
     {
         private readonly GarageContext _context;
 
-        public VehicleEntitiesController(GarageContext context)
+        public VehicleTypeEntitiesController(GarageContext context)
         {
             _context = context;
         }
 
-        // GET: VehicleEntities
+        // GET: VehicleTypeEntities
         public async Task<IActionResult> Index()
         {
-            return View(await _context.VehicleEntities.ToListAsync());
+            return View(await _context.VehicleTypeEntities.ToListAsync());
         }
 
-        // GET: VehicleEntities/Details/5
+        // GET: VehicleTypeEntities/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,39 +34,39 @@ namespace Garage3._0.Web.Models.ViewModels
                 return NotFound();
             }
 
-            var vehicleEntities = await _context.VehicleEntities
+            var vehicleTypeEntities = await _context.VehicleTypeEntities
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (vehicleEntities == null)
+            if (vehicleTypeEntities == null)
             {
                 return NotFound();
             }
 
-            return View(vehicleEntities);
+            return View(vehicleTypeEntities);
         }
 
-        // GET: VehicleEntities/Create
+        // GET: VehicleTypeEntities/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: VehicleEntities/Create
+        // POST: VehicleTypeEntities/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,VehicleTypes")] VehicleEntities vehicleEntities)
+        public async Task<IActionResult> Create([Bind("Id,VehicleTypes")] VehicleTypeEntities vehicleTypeEntities)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(vehicleEntities);
+                _context.Add(vehicleTypeEntities);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(vehicleEntities);
+            return View(vehicleTypeEntities);
         }
 
-        // GET: VehicleEntities/Edit/5
+        // GET: VehicleTypeEntities/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,22 +74,22 @@ namespace Garage3._0.Web.Models.ViewModels
                 return NotFound();
             }
 
-            var vehicleEntities = await _context.VehicleEntities.FindAsync(id);
-            if (vehicleEntities == null)
+            var vehicleTypeEntities = await _context.VehicleTypeEntities.FindAsync(id);
+            if (vehicleTypeEntities == null)
             {
                 return NotFound();
             }
-            return View(vehicleEntities);
+            return View(vehicleTypeEntities);
         }
 
-        // POST: VehicleEntities/Edit/5
+        // POST: VehicleTypeEntities/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,VehicleTypes")] VehicleEntities vehicleEntities)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,VehicleTypes")] VehicleTypeEntities vehicleTypeEntities)
         {
-            if (id != vehicleEntities.Id)
+            if (id != vehicleTypeEntities.Id)
             {
                 return NotFound();
             }
@@ -98,12 +98,12 @@ namespace Garage3._0.Web.Models.ViewModels
             {
                 try
                 {
-                    _context.Update(vehicleEntities);
+                    _context.Update(vehicleTypeEntities);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VehicleEntitiesExists(vehicleEntities.Id))
+                    if (!VehicleTypeEntitiesExists(vehicleTypeEntities.Id))
                     {
                         return NotFound();
                     }
@@ -114,10 +114,10 @@ namespace Garage3._0.Web.Models.ViewModels
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(vehicleEntities);
+            return View(vehicleTypeEntities);
         }
 
-        // GET: VehicleEntities/Delete/5
+        // GET: VehicleTypeEntities/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -125,30 +125,30 @@ namespace Garage3._0.Web.Models.ViewModels
                 return NotFound();
             }
 
-            var vehicleEntities = await _context.VehicleEntities
+            var vehicleTypeEntities = await _context.VehicleTypeEntities
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (vehicleEntities == null)
+            if (vehicleTypeEntities == null)
             {
                 return NotFound();
             }
 
-            return View(vehicleEntities);
+            return View(vehicleTypeEntities);
         }
 
-        // POST: VehicleEntities/Delete/5
+        // POST: VehicleTypeEntities/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var vehicleEntities = await _context.VehicleEntities.FindAsync(id);
-            _context.VehicleEntities.Remove(vehicleEntities);
+            var vehicleTypeEntities = await _context.VehicleTypeEntities.FindAsync(id);
+            _context.VehicleTypeEntities.Remove(vehicleTypeEntities);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VehicleEntitiesExists(int id)
+        private bool VehicleTypeEntitiesExists(int id)
         {
-            return _context.VehicleEntities.Any(e => e.Id == id);
+            return _context.VehicleTypeEntities.Any(e => e.Id == id);
         }
     }
 }
