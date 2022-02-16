@@ -1,8 +1,15 @@
-using Garage3._0.Web.Data;
+﻿using Garage3._0.Web.Data;
 using Garage3._0.Web.Garagemapper;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<Garage3_0WebContext>(options =>
+
+
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Garage3_0WebContext")));
 
 
 builder.Services.AddDbContext<GarageContext>(options =>

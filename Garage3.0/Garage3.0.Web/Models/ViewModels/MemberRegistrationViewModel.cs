@@ -1,4 +1,6 @@
-﻿namespace Garage3._0.Web.Models.ViewModels
+﻿using Garage3._0.Web.Models.Entities;
+
+namespace Garage3._0.Web.Models.ViewModels
 {
     public class MemberRegistrationViewModel
     {
@@ -7,6 +9,6 @@
         public string Email { get; set; }
 
         //Nav prop
-        //public ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
+        public ICollection<VehicleEntity> Vehicles { get; set; } = new List<VehicleEntity>();
     }
 }
