@@ -7,6 +7,6 @@
         public string Email { get; set; }
 
         //Nav prop
-        //public IEnumerable<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
+        //public ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
     }
 }
