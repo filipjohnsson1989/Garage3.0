@@ -7,5 +7,8 @@
         public int PersonNr { get; set; }
         public string Email { get; set; }
 
+        //Nav prop
+        //public ICollection<Vehicle> Vehicles { get; set; }
+
     }
 }
