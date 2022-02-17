@@ -8,22 +8,29 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Garage3._0.Web.Data;
 using Garage3._0.Web.Models.Entities;
+using AutoMapper;
+using Garage3._0.Web.Models.ViewModels;
 
 namespace Garage3._0.Web.Controllers
 {
     public class VehiclesController : Controller
     {
         private readonly GarageContext _context;
+        private readonly IMapper _mapper;
 
-        public VehiclesController(GarageContext context)
+        public VehiclesController(GarageContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: Vehicles
         public async Task<IActionResult> Index()
         {
-            return View(await _context.VehicleEntity.ToListAsync());
+            var model = _mapper.ProjectTo<VehicleIndexViewModel>(_context.VehicleEntity)
+                .OrderBy(s => s.Id)
+                .Take(10);
+            return View(await model.ToListAsync());
         }
 
         // GET: Vehicles/Details/5

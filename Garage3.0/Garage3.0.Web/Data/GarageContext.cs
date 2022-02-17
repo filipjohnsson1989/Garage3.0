@@ -13,5 +13,14 @@ public class GarageContext : DbContext
     {
 
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<VehicleEntity>()
+            .HasOne(p => p.VehicleType)
+            .WithMany(b => b.Vehicles)
+            .IsRequired();
+        //base.OnModelCreating(modelBuilder); 
+    }
     public DbSet<Garage3._0.Web.Models.Entities.VehicleTypeEntity> VehicleTypeEntity { get; set; }
 }
