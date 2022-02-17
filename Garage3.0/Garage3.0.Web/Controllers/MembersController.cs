@@ -11,22 +11,22 @@ using Garage3._0.Web.Models.Entities;
 
 namespace Garage3._0.Web.Controllers
 {
-    public class MemberController : Controller
+    public class MembersController : Controller
     {
-        private readonly Garage3_0WebContext _context;
+        private readonly GarageContext _context;
 
-        public MemberController(Garage3_0WebContext context)
+        public MembersController(GarageContext context)
         {
             _context = context;
         }
 
-        // GET: Member
+        // GET: Members
         public async Task<IActionResult> Index()
         {
             return View(await _context.MemberEntity.ToListAsync());
         }
 
-        // GET: Member/Details/5
+        // GET: Members/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,13 +44,13 @@ namespace Garage3._0.Web.Controllers
             return View(memberEntity);
         }
 
-        // GET: Member/Create
+        // GET: Members/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Member/Create
+        // POST: Members/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -66,7 +66,7 @@ namespace Garage3._0.Web.Controllers
             return View(memberEntity);
         }
 
-        // GET: Member/Edit/5
+        // GET: Members/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,7 +82,7 @@ namespace Garage3._0.Web.Controllers
             return View(memberEntity);
         }
 
-        // POST: Member/Edit/5
+        // POST: Members/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -117,7 +117,7 @@ namespace Garage3._0.Web.Controllers
             return View(memberEntity);
         }
 
-        // GET: Member/Delete/5
+        // GET: Members/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,7 +135,7 @@ namespace Garage3._0.Web.Controllers
             return View(memberEntity);
         }
 
-        // POST: Member/Delete/5
+        // POST: Members/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
