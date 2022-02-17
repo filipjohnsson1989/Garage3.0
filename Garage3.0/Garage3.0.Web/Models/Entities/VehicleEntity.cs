@@ -13,5 +13,6 @@ public class VehicleEntity
     public int Member { get; set; }
     public int VehicleType { get; set; }
 
+    #nullable enable
     public string? Color { get; set; }
 }

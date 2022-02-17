@@ -1,5 +1,5 @@
-
-﻿using Microsoft.EntityFrameworkCore;
+#nullable disable
+using Microsoft.EntityFrameworkCore;
 using Garage3._0.Web.Models.Entities;
 
 namespace Garage3._0.Web.Data;
