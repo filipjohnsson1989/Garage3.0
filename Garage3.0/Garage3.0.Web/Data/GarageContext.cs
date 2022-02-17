@@ -8,10 +8,11 @@ public class GarageContext : DbContext
 {
     public DbSet<VehicleEntity> VehicleEntity { get; set; }
 
+    public DbSet<VehicleTypeEntity> VehicleTypeEntity { get; set; }
+
     public GarageContext(DbContextOptions<GarageContext> options)
         : base(options)
     {
 
     }
-    public DbSet<Garage3._0.Web.Models.Entities.VehicleTypeEntity> VehicleTypeEntity { get; set; }
 }

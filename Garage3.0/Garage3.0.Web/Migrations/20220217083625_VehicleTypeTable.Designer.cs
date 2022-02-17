@@ -3,6 +3,7 @@ using Garage3._0.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage3._0.Web.Migrations
 {
     [DbContext(typeof(GarageContext))]
-    partial class GarageContextModelSnapshot : ModelSnapshot
+    [Migration("20220217083625_VehicleTypeTable")]
+    partial class VehicleTypeTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,7 +54,7 @@ namespace Garage3._0.Web.Migrations
                     b.ToTable("VehicleEntity");
                 });
 
-            modelBuilder.Entity("Garage3._0.Web.Models.Entities.VehicleTypeEntity", b =>
+            modelBuilder.Entity("Garage3._0.Web.Models.Entities.VehicleType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -60,16 +62,13 @@ namespace Garage3._0.Web.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Title")
+                    b.Property<string>("VehicleTypes")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Wheels")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.ToTable("VehicleTypeEntity");
+                    b.ToTable("VehicleType");
                 });
 #pragma warning restore 612, 618
         }
