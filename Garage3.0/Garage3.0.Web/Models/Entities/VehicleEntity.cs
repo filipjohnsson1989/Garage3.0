@@ -7,11 +7,12 @@ public class VehicleEntity
     public string RegNo { get; set; }
 
     public string Brand { get; set; }
+    public VehicleType VehicleType { get; set; }
+    public MemberEntity Member { get; set; }
 
     public string Model { get; set; }
-
-    public int Member { get; set; }
-    public int VehicleType { get; set; }
-
     public string? Color { get; set; }
+
+    
+
 }
