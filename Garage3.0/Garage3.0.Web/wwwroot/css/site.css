@@ -16,3 +16,23 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.card-header {
+    background-color: darkcyan;
+    color: white;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 18px;
+}
+
+.btn {
+    margin-top: 1rem;
+    background-color: darkcyan;
+}
+
+#welcome {
+    background-color: darkcyan;
+    color: white;
+    padding: 3rem;
+    margin-bottom: 3rem;
+}
