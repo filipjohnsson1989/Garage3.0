@@ -1,8 +1,48 @@
 ﻿@{
-    ViewData["Title"] = "Garage Home Page";
+	ViewData["Title"] = "Garage Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="welcome" class="text-center">
+	<h1 class="display-4">Welcome</h1>
+	<p >Choose your action</p>
+</div>
+<div class="row">
+	<div class="col-md-4">
+		<div class="card">
+			<div class="card-header">
+				Featured
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">Park</h5>
+				<p class="card-text">If you have an account and at least one registered vehicle you can park.</p>
+				<a href="#" class="btn btn-primary">Go to parking</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="card">
+			<div class="card-header">
+				Featured
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">Register new member</h5>
+				<p class="card-text">Before you can park the first time you need to register. Registering is free.</p>
+				<p class="card-text">When you have an account you can register your vehicle/vehicles as well.</p>
+				<a href="/Members/Create" class="btn btn-primary">Go to member registration</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="card">
+			<div class="card-header">
+				Featured
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">Register new vehicle</h5>
+				<p class="card-text">Please, register your vehcile to park in the garage. Registering is free.</p>
+				<p class="card-text">You can register several vehicles, one by one.</p>
+				<a href="/Vehicles/Create" class="btn btn-primary">Go to vehicle registration</a>
+			</div>
+		</div>
+	</div>
 </div>
