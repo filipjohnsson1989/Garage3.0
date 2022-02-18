@@ -46,6 +46,33 @@ namespace Garage3._0.Web.Migrations
                     b.ToTable("MemberEntity");
                 });
 
+            modelBuilder.Entity("Garage3._0.Web.Models.Entities.ParkingActivityEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CheckIn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("CheckOut")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double?>("ParkingCost")
+                        .HasColumnType("float");
+
+                    b.Property<int>("VehicleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VehicleId");
+
+                    b.ToTable("ParkingActivityEntity");
+                });
+
             modelBuilder.Entity("Garage3._0.Web.Models.Entities.VehicleEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -60,10 +87,7 @@ namespace Garage3._0.Web.Migrations
                     b.Property<string>("Color")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Member")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MemberEntityId")
+                    b.Property<int?>("MemberId")
                         .HasColumnType("int");
 
                     b.Property<string>("Model")
@@ -72,12 +96,14 @@ namespace Garage3._0.Web.Migrations
                     b.Property<string>("RegNo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("VehicleType")
+                    b.Property<int?>("VehicleTypeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MemberEntityId");
+                    b.HasIndex("MemberId");
+
+                    b.HasIndex("VehicleTypeId");
 
                     b.ToTable("VehicleEntity");
                 });
@@ -100,6 +126,42 @@ namespace Garage3._0.Web.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("VehicleTypeEntity");
+                });
+
+            modelBuilder.Entity("Garage3._0.Web.Models.Entities.ParkingActivityEntity", b =>
+                {
+                    b.HasOne("Garage3._0.Web.Models.Entities.VehicleEntity", "Vehicle")
+                        .WithMany("ParkingActivities")
+                        .HasForeignKey("VehicleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Vehicle");
+                });
+
+            modelBuilder.Entity("Garage3._0.Web.Models.Entities.VehicleEntity", b =>
+                {
+                    b.HasOne("Garage3._0.Web.Models.Entities.MemberEntity", "Member")
+                        .WithMany("Vehicles")
+                        .HasForeignKey("MemberId");
+
+                    b.HasOne("Garage3._0.Web.Models.Entities.VehicleTypeEntity", "VehicleType")
+                        .WithMany()
+                        .HasForeignKey("VehicleTypeId");
+
+                    b.Navigation("Member");
+
+                    b.Navigation("VehicleType");
+                });
+
+            modelBuilder.Entity("Garage3._0.Web.Models.Entities.MemberEntity", b =>
+                {
+                    b.Navigation("Vehicles");
+                });
+
+            modelBuilder.Entity("Garage3._0.Web.Models.Entities.VehicleEntity", b =>
+                {
+                    b.Navigation("ParkingActivities");
                 });
 #pragma warning restore 612, 618
         }

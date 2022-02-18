@@ -13,6 +13,7 @@ public class VehicleEntity
     public string Model { get; set; }
     public string? Color { get; set; }
 
-    
+    //Nav prop
+    public ICollection<ParkingActivityEntity> ParkingActivities { get; set; }   
 
 }
