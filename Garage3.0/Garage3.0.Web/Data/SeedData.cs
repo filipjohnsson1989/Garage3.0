@@ -6,15 +6,30 @@ namespace Garage3._0.Web.Data
 {
     public class SeedData
     {
-        private static Faker faker = null;
-        public static async Task InitAsync(GarageContext db)
+        private static Faker faker = default!;
+
+        private static async Task InitVehicleTypeAsync(GarageContext db)
         {
             if (await db.VehicleTypes.AnyAsync()) return;
 
-            faker = new Faker("sv");
-
             var vehicleTypes = GetVehicleTypes();
             await db.AddRangeAsync(vehicleTypes);
+        }
+
+        private static async Task InitParkingSpotsAsync(GarageContext db)
+        {
+            if (await db.ParkingSpot.AnyAsync()) return;
+
+            var parkingSpots = GetParkingSpots();
+            await db.AddRangeAsync(parkingSpots);
+        }
+
+        public static async Task InitAsync(GarageContext db)
+        {
+            faker = new Faker("sv");
+
+            await InitVehicleTypeAsync(db);
+            await InitParkingSpotsAsync(db);
 
             await db.SaveChangesAsync();
         }

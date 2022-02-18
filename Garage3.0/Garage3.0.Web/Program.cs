@@ -1,5 +1,6 @@
 ﻿using Garage3._0.Web.Automapper;
 using Garage3._0.Web.Data;
+using Garage3._0.Web.Extensions;
 using Garage3._0.Web.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddAutoMapper(typeof(GarageMappings));
 
 var app = builder.Build();
+
+//Seed
+app.SeedDataAsync().GetAwaiter().GetResult();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
