@@ -1,0 +1,9 @@
+﻿@using Garage3._0.Web.Services
+@inject IVehicleTypeService service
+
+<div class="form-group">
+    <select class="form-control" name="VehicleTypeId" asp-items="@await service.GetVehicleTypes()">
+        <option selected="selected" value="">Välj typ</option>
+    </select>
+</div>
+

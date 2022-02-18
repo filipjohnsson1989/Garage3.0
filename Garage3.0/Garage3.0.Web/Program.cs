@@ -1,11 +1,13 @@
 ﻿using Garage3._0.Web.Automapper;
 using Garage3._0.Web.Data;
+using Garage3._0.Web.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddScoped<IVehicleTypeService, VehicleTypeService>();
 
 builder.Services.AddDbContext<GarageContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("GarageContext")));

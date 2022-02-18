@@ -15,7 +15,7 @@ public class GarageContext : DbContext
     public GarageContext(DbContextOptions<GarageContext> options)
         : base(options)
     {
-
+        
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
