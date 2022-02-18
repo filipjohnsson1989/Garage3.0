@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage3._0.Web.Migrations
 {
     [DbContext(typeof(GarageContext))]
-    [Migration("20220216133940_AddMemberToVehicle")]
-    partial class AddMemberToVehicle
+    [Migration("20220217125703_VehicleTypeEntity")]
+    partial class VehicleTypeEntity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,6 +52,26 @@ namespace Garage3._0.Web.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("VehicleEntity");
+                });
+
+            modelBuilder.Entity("Garage3._0.Web.Models.Entities.VehicleTypeEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Wheels")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VehicleTypeEntity");
                 });
 #pragma warning restore 612, 618
         }
