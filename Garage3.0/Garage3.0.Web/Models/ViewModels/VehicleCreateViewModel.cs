@@ -1,10 +1,12 @@
 ﻿#nullable disable
+using System.ComponentModel.DataAnnotations;
+
 namespace Garage3._0.Web.Models.ViewModels;
 
 public class VehicleCreateViewModel
 {
-    public int Id { get; set; }
     public int MemberId { get; set; }
+    [Display(Name = "Vehicle Type")]
     public int VehicleTypeId { get; set; }
     public string RegNo { get; set; }
 
