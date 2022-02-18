@@ -23,11 +23,11 @@ namespace Garage3._0.Web.Data
         {
             var vehicleTypes = new List<VehicleTypeEntity>();
 
-            vehicleTypes.Add(new VehicleTypeEntity { Title = "Bil", Wheels = 4 });
-            vehicleTypes.Add(new VehicleTypeEntity { Title = "Båt", Wheels = 0 });
-            vehicleTypes.Add(new VehicleTypeEntity { Title = "Cykel", Wheels = 2 });
-            vehicleTypes.Add(new VehicleTypeEntity { Title = "Motorcykel", Wheels = 2 });
-            vehicleTypes.Add(new VehicleTypeEntity { Title = "Flygplan", Wheels = 3 });
+            vehicleTypes.Add(new VehicleTypeEntity { Title = "Car", Wheels = 4 });
+            vehicleTypes.Add(new VehicleTypeEntity { Title = "Boat", Wheels = 0 });
+            vehicleTypes.Add(new VehicleTypeEntity { Title = "Bicycle", Wheels = 2 });
+            vehicleTypes.Add(new VehicleTypeEntity { Title = "MC", Wheels = 2 });
+            vehicleTypes.Add(new VehicleTypeEntity { Title = "Airplane", Wheels = 3 });
 
 
 
