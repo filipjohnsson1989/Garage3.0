@@ -2,6 +2,6 @@
 
 namespace Garage3._0.Web.Models.ViewModels
 {
-    public record VehicleRegistrationViewModel (string RegNo, string Brand, string Model, string? Color, VehicleType VehicleType, MemberEntity Member);
+    public record VehicleRegistrationViewModel (string RegNo, string Brand, string Model, string? Color, VehicleTypeEntity VehicleType, MemberEntity Member);
     
 }

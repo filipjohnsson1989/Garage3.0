@@ -59,11 +59,11 @@ namespace Garage3._0.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,PersonNr,Email")] MemberCreateViewModel memberRegistrationViewModel)
+        public async Task<IActionResult> Create([Bind("Id,Name,PersonNr,Email")] MemberCreateViewModel memberCreateViewModel)
         {
             if (ModelState.IsValid)
             {
-                MemberEntity memberEntity = _mapper.Map<MemberEntity>(memberRegistrationViewModel); 
+                MemberEntity memberEntity = _mapper.Map<MemberEntity>(memberCreateViewModel); 
 
                 //MemberEntity memberEntity2 = new MemberEntity()
                 //{
@@ -73,7 +73,7 @@ namespace Garage3._0.Web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(memberRegistrationViewModel);
+            return View(memberCreateViewModel);
         }
 
         // GET: Members/Edit/5
