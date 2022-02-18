@@ -16,8 +16,8 @@ namespace Garage3._0.Web.Models.Entities
 
         //Nav prop
 
-        [ForeignKey("Id")]
-        public int VehicleId { get; set; }
+        //[ForeignKey("Id")]
+        public int VehicleEntityId { get; set; }
         public VehicleEntity Vehicle { get; set; }
         
     }
