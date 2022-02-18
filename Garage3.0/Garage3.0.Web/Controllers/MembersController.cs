@@ -25,9 +25,12 @@ namespace Garage3._0.Web.Controllers
         }
 
         // GET: Members
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(MemberIndexViewModel memberIndexViewModel)
         {
-            return View(await _context.Members.ToListAsync());
+            //Felmeddelande:
+            //InvalidOperationException: The model item passed into the ViewDataDictionary is of type 'Garage3._0.Web.Models.ViewModels.MemberIndexViewModel', but this ViewDataDictionary instance requires a model item of type 'System.Collections.Generic.IEnumerable`1[Garage3._0.Web.Models.ViewModels.MemberIndexViewModel]'.
+            MemberEntity memberEntity = _mapper.Map<MemberEntity>(memberIndexViewModel);
+            return View(memberIndexViewModel);
         }
 
         // GET: Members/Details/5
