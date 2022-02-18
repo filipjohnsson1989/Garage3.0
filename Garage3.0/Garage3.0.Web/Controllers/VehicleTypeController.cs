@@ -23,7 +23,7 @@ namespace Garage3._0.Web.Models.ViewModels
         // GET: VehicleTypeEntities
         public async Task<IActionResult> Index()
         {
-            return View(await _context.VehicleTypeEntity.ToListAsync());
+            return View(await _context.VehicleTypes.ToListAsync());
         }
 
         // GET: VehicleTypeEntities/Details/5
@@ -34,7 +34,7 @@ namespace Garage3._0.Web.Models.ViewModels
                 return NotFound();
             }
 
-            var vehicleType = await _context.VehicleTypeEntity
+            var vehicleType = await _context.VehicleTypes
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (vehicleType == null)
             {
@@ -74,7 +74,7 @@ namespace Garage3._0.Web.Models.ViewModels
                 return NotFound();
             }
 
-            var vehicleType = await _context.VehicleTypeEntity.FindAsync(id);
+            var vehicleType = await _context.VehicleTypes.FindAsync(id);
             if (vehicleType == null)
             {
                 return NotFound();
@@ -125,7 +125,7 @@ namespace Garage3._0.Web.Models.ViewModels
                 return NotFound();
             }
 
-            var vehicleType = await _context.VehicleTypeEntity
+            var vehicleType = await _context.VehicleTypes
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (vehicleType == null)
             {
@@ -140,15 +140,15 @@ namespace Garage3._0.Web.Models.ViewModels
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var vehicleType = await _context.VehicleTypeEntity.FindAsync(id);
-            _context.VehicleTypeEntity.Remove(vehicleType);
+            var vehicleType = await _context.VehicleTypes.FindAsync(id);
+            _context.VehicleTypes.Remove(vehicleType);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool VehicleTypeExists(int id)
         {
-            return _context.VehicleTypeEntity.Any(e => e.Id == id);
+            return _context.VehicleTypes.Any(e => e.Id == id);
         }
     }
 }

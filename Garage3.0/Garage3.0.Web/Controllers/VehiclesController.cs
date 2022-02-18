@@ -8,22 +8,29 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Garage3._0.Web.Data;
 using Garage3._0.Web.Models.Entities;
+using AutoMapper;
+using Garage3._0.Web.Models.ViewModels;
 
 namespace Garage3._0.Web.Controllers
 {
     public class VehiclesController : Controller
     {
         private readonly GarageContext _context;
+        private readonly IMapper _mapper;
 
-        public VehiclesController(GarageContext context)
+        public VehiclesController(GarageContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: Vehicles
         public async Task<IActionResult> Index()
         {
-            return View(await _context.VehicleEntity.ToListAsync());
+            var model = _mapper.ProjectTo<VehicleIndexViewModel>(_context.Vehicles)
+                .OrderBy(s => s.Id)
+                .Take(10);
+            return View(await model.ToListAsync());
         }
 
         // GET: Vehicles/Details/5
@@ -34,7 +41,7 @@ namespace Garage3._0.Web.Controllers
                 return NotFound();
             }
 
-            var vehicleEntity = await _context.VehicleEntity
+            var vehicleEntity = await _context.Vehicles
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (vehicleEntity == null)
             {
@@ -55,7 +62,7 @@ namespace Garage3._0.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,RegNo,Brand,Model,VehicleType,Member,Color")] VehicleEntity vehicleEntity)
+        public async Task<IActionResult> Create([Bind("Id,Member,VehicleType,RegNo,Brand,Model,Color")] VehicleEntity vehicleEntity)
         {
             if (ModelState.IsValid)
             {
@@ -74,7 +81,7 @@ namespace Garage3._0.Web.Controllers
                 return NotFound();
             }
 
-            var vehicleEntity = await _context.VehicleEntity.FindAsync(id);
+            var vehicleEntity = await _context.Vehicles.FindAsync(id);
             if (vehicleEntity == null)
             {
                 return NotFound();
@@ -87,7 +94,7 @@ namespace Garage3._0.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,RegNo,Brand,Model,VehicleType,Member,Color")] VehicleEntity vehicleEntity)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Member,VehicleType,RegNo,Brand,Member,Color")] VehicleEntity vehicleEntity)
         {
             if (id != vehicleEntity.Id)
             {
@@ -125,7 +132,7 @@ namespace Garage3._0.Web.Controllers
                 return NotFound();
             }
 
-            var vehicleEntity = await _context.VehicleEntity
+            var vehicleEntity = await _context.Vehicles
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (vehicleEntity == null)
             {
@@ -140,15 +147,15 @@ namespace Garage3._0.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var vehicleEntity = await _context.VehicleEntity.FindAsync(id);
-            _context.VehicleEntity.Remove(vehicleEntity);
+            var vehicleEntity = await _context.Vehicles.FindAsync(id);
+            _context.Vehicles.Remove(vehicleEntity);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool VehicleEntityExists(int id)
         {
-            return _context.VehicleEntity.Any(e => e.Id == id);
+            return _context.Vehicles.Any(e => e.Id == id);
         }
     }
 }
