@@ -14,10 +14,11 @@ namespace Garage3._0.Web.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    MemberEntityId = table.Column<int>(type: "int", nullable: false),
+                    VehicleTypeEntityId = table.Column<int>(type: "int", nullable: false),
                     RegNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Brand = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Model = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    VehicleType = table.Column<int>(type: "int", nullable: false),
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>

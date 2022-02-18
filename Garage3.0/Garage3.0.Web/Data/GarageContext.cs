@@ -8,6 +8,10 @@ public class GarageContext : DbContext
 {
     public DbSet<VehicleEntity> VehicleEntity { get; set; }
 
+    public DbSet<VehicleTypeEntity> VehicleTypeEntity { get; set; }
+
+    public DbSet<MemberEntity> MemberEntity { get; set; }
+
     public GarageContext(DbContextOptions<GarageContext> options)
         : base(options)
     {
@@ -17,10 +21,13 @@ public class GarageContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<VehicleEntity>()
-            .HasOne(p => p.VehicleType)
-            .WithMany(b => b.Vehicles)
+            .HasOne(v => v.VehicleTypeEntity)
+            .WithMany(vt => vt.Vehicles)
+            .IsRequired();
+        modelBuilder.Entity<VehicleEntity>()
+            .HasOne(v => v.MemberEntity)
+            .WithMany(m => m.Vehicles)
             .IsRequired();
         //base.OnModelCreating(modelBuilder); 
     }
-    public DbSet<Garage3._0.Web.Models.Entities.VehicleTypeEntity> VehicleTypeEntity { get; set; }
 }

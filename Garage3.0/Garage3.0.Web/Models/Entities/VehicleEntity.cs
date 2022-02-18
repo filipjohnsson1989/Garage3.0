@@ -3,12 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Garage3._0.Web.Models.Entities;
 
-[Table("Vehicle")]
 public class VehicleEntity
 {
     public int Id { get; set; }
-    public int Member { get; set; }
-    public VehicleTypeEntity VehicleType { get; set; }
+    public MemberEntity MemberEntity { get; set; }
+    public VehicleTypeEntity VehicleTypeEntity { get; set; }
     public string RegNo { get; set; }
 
     public string Brand { get; set; }

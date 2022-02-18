@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage3._0.Web.Migrations
 {
     [DbContext(typeof(GarageContext))]
-    [Migration("20220217135256_RenameVehicleTableInDB")]
-    partial class RenameVehicleTableInDB
+    [Migration("20220217125703_veicleTypeEntity")]
+    partial class veicleTypeEntity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,14 +46,12 @@ namespace Garage3._0.Web.Migrations
                     b.Property<string>("RegNo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("VehicleTypeId")
+                    b.Property<int>("VehicleType")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VehicleTypeId");
-
-                    b.ToTable("Vehicle");
+                    b.ToTable("VehicleEntity");
                 });
 
             modelBuilder.Entity("Garage3._0.Web.Models.Entities.VehicleTypeEntity", b =>
@@ -65,6 +63,7 @@ namespace Garage3._0.Web.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Wheels")
@@ -73,22 +72,6 @@ namespace Garage3._0.Web.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("VehicleTypeEntity");
-                });
-
-            modelBuilder.Entity("Garage3._0.Web.Models.Entities.VehicleEntity", b =>
-                {
-                    b.HasOne("Garage3._0.Web.Models.Entities.VehicleTypeEntity", "VehicleType")
-                        .WithMany("Vehicles")
-                        .HasForeignKey("VehicleTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("VehicleType");
-                });
-
-            modelBuilder.Entity("Garage3._0.Web.Models.Entities.VehicleTypeEntity", b =>
-                {
-                    b.Navigation("Vehicles");
                 });
 #pragma warning restore 612, 618
         }
