@@ -8,7 +8,7 @@
         public string Email { get; set; }
 
         //Nav prop
-        public ICollection<VehicleEntity> Vehicles { get; set; }
+        public ICollection<VehicleEntity> Vehicles { get; set; } = new List<VehicleEntity>();
 
     }
 }
