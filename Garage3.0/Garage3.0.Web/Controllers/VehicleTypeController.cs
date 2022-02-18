@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Garage3._0.Web.Data;
 using Garage3._0.Web.Models.Entities;
 
-namespace Garage3._0.Web.Models.ViewModels
+namespace Garage3._0.Web.Controllers
 {
     public class VehicleTypeController : Controller
     {
@@ -55,7 +55,7 @@ namespace Garage3._0.Web.Models.ViewModels
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,VehicleTypes")] VehicleTypeEntity vehicleType)
+        public async Task<IActionResult> Create([Bind("Title,Wheels")] VehicleTypeEntity vehicleType)
         {
             if (ModelState.IsValid)
             {
