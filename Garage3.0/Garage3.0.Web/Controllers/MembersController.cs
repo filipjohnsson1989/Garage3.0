@@ -8,22 +8,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Garage3._0.Web.Data;
 using Garage3._0.Web.Models.Entities;
+using Garage3._0.Web.Models.ViewModels;
+using AutoMapper;
 
 namespace Garage3._0.Web.Controllers
 {
     public class MembersController : Controller
     {
         private readonly GarageContext _context;
+        private readonly IMapper _mapper;
 
-        public MembersController(GarageContext context)
+        public MembersController(GarageContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: Members
         public async Task<IActionResult> Index()
         {
-            return View(await _context.MemberEntity.ToListAsync());
+            return View(await _context.Members.ToListAsync());
         }
 
         // GET: Members/Details/5
@@ -34,7 +38,7 @@ namespace Garage3._0.Web.Controllers
                 return NotFound();
             }
 
-            var memberEntity = await _context.MemberEntity
+            var memberEntity = await _context.Members
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (memberEntity == null)
             {
@@ -55,15 +59,21 @@ namespace Garage3._0.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,PersonNr,Email")] MemberEntity memberEntity)
+        public async Task<IActionResult> Create([Bind("Id,Name,PersonNr,Email")] MemberCreateViewModel memberCreateViewModel)
         {
             if (ModelState.IsValid)
             {
+                MemberEntity memberEntity = _mapper.Map<MemberEntity>(memberCreateViewModel); 
+
+                //MemberEntity memberEntity2 = new MemberEntity()
+                //{
+                //    Email = memberRegistrationViewModel.Email,
+                //};
                 _context.Add(memberEntity);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(memberEntity);
+            return View(memberCreateViewModel);
         }
 
         // GET: Members/Edit/5
@@ -74,7 +84,7 @@ namespace Garage3._0.Web.Controllers
                 return NotFound();
             }
 
-            var memberEntity = await _context.MemberEntity.FindAsync(id);
+            var memberEntity = await _context.Members.FindAsync(id);
             if (memberEntity == null)
             {
                 return NotFound();
@@ -125,7 +135,7 @@ namespace Garage3._0.Web.Controllers
                 return NotFound();
             }
 
-            var memberEntity = await _context.MemberEntity
+            var memberEntity = await _context.Members
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (memberEntity == null)
             {
@@ -140,15 +150,15 @@ namespace Garage3._0.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var memberEntity = await _context.MemberEntity.FindAsync(id);
-            _context.MemberEntity.Remove(memberEntity);
+            var memberEntity = await _context.Members.FindAsync(id);
+            _context.Members.Remove(memberEntity);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool MemberEntityExists(int id)
         {
-            return _context.MemberEntity.Any(e => e.Id == id);
+            return _context.Members.Any(e => e.Id == id);
         }
     }
 }
