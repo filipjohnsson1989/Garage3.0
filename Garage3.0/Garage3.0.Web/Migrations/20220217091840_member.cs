@@ -4,7 +4,7 @@
 
 namespace Garage3._0.Web.Migrations
 {
-    public partial class member : Migration
+    public partial class Member : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

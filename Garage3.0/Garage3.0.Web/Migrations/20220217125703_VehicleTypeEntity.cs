@@ -4,7 +4,7 @@
 
 namespace Garage3._0.Web.Migrations
 {
-    public partial class veicleTypeEntity : Migration
+    public partial class VehicleTypeEntity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

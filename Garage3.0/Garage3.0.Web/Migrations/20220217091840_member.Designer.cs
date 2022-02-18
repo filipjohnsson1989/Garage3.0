@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage3._0.Web.Migrations
 {
     [DbContext(typeof(GarageContext))]
-    [Migration("20220217091840_member")]
-    partial class member
+    [Migration("20220217091840_Member")]
+    partial class Member
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

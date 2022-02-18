@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage3._0.Web.Migrations
 {
     [DbContext(typeof(GarageContext))]
-    [Migration("20220217125703_veicleTypeEntity")]
-    partial class veicleTypeEntity
+    [Migration("20220217125703_VehicleTypeEntity")]
+    partial class VehicleTypeEntity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
