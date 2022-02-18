@@ -12,7 +12,7 @@ public class GarageContext : DbContext
 
     public DbSet<MemberEntity> Members { get; set; }
 
-    public DbSet<ParkingSpot> ParkingSpot { get; set; }
+    public DbSet<ParkingSpotEntity> ParkingSpots { get; set; }
 
     public GarageContext(DbContextOptions<GarageContext> options)
         : base(options)

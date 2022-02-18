@@ -18,7 +18,7 @@ namespace Garage3._0.Web.Data
 
         private static async Task InitParkingSpotsAsync(GarageContext db)
         {
-            if (await db.ParkingSpot.AnyAsync()) return;
+            if (await db.ParkingSpots.AnyAsync()) return;
 
             var parkingSpots = GetParkingSpots();
             await db.AddRangeAsync(parkingSpots);
@@ -48,39 +48,39 @@ namespace Garage3._0.Web.Data
             return vehicleTypes;
         }
 
-        private static IEnumerable<ParkingSpot> GetParkingSpots()
+        private static IEnumerable<ParkingSpotEntity> GetParkingSpots()
         {
-            var parkingSpots = new List<ParkingSpot>();
+            var parkingSpots = new List<ParkingSpotEntity>();
 
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "A1" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "A2" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "A3" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "A4" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "A5" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "A6" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "A7" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "A8" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "A9" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "A1" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "A2" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "A3" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "A4" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "A5" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "A6" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "A7" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "A8" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "A9" });
 
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "B1" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "B2" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "B3" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "B4" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "B5" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "B6" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "B7" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "B8" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "B9" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "B1" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "B2" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "B3" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "B4" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "B5" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "B6" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "B7" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "B8" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "B9" });
 
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "C1" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "C2" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "C3" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "C4" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "C5" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "C6" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "C7" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "C8" });
-            parkingSpots.Add(new ParkingSpot { SpotNumber = "C9" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "C1" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "C2" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "C3" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "C4" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "C5" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "C6" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "C7" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "C8" });
+            parkingSpots.Add(new ParkingSpotEntity { SpotNumber = "C9" });
 
             return parkingSpots;
         }
