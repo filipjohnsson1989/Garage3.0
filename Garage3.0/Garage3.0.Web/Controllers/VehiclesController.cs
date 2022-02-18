@@ -27,7 +27,7 @@ namespace Garage3._0.Web.Controllers
         // GET: Vehicles
         public async Task<IActionResult> Index()
         {
-            var model = _mapper.ProjectTo<VehicleIndexViewModel>(_context.VehicleEntity)
+            var model = _mapper.ProjectTo<VehicleIndexViewModel>(_context.Vehicles)
                 .OrderBy(s => s.Id)
                 .Take(10);
             return View(await model.ToListAsync());
@@ -41,7 +41,7 @@ namespace Garage3._0.Web.Controllers
                 return NotFound();
             }
 
-            var vehicleEntity = await _context.VehicleEntity
+            var vehicleEntity = await _context.Vehicles
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (vehicleEntity == null)
             {
@@ -81,7 +81,7 @@ namespace Garage3._0.Web.Controllers
                 return NotFound();
             }
 
-            var vehicleEntity = await _context.VehicleEntity.FindAsync(id);
+            var vehicleEntity = await _context.Vehicles.FindAsync(id);
             if (vehicleEntity == null)
             {
                 return NotFound();
@@ -132,7 +132,7 @@ namespace Garage3._0.Web.Controllers
                 return NotFound();
             }
 
-            var vehicleEntity = await _context.VehicleEntity
+            var vehicleEntity = await _context.Vehicles
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (vehicleEntity == null)
             {
@@ -147,15 +147,15 @@ namespace Garage3._0.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var vehicleEntity = await _context.VehicleEntity.FindAsync(id);
-            _context.VehicleEntity.Remove(vehicleEntity);
+            var vehicleEntity = await _context.Vehicles.FindAsync(id);
+            _context.Vehicles.Remove(vehicleEntity);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool VehicleEntityExists(int id)
         {
-            return _context.VehicleEntity.Any(e => e.Id == id);
+            return _context.Vehicles.Any(e => e.Id == id);
         }
     }
 }
