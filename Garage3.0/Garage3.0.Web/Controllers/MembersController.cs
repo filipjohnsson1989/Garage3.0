@@ -8,16 +8,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Garage3._0.Web.Data;
 using Garage3._0.Web.Models.Entities;
+using Garage3._0.Web.Models.ViewModels;
+using AutoMapper;
 
 namespace Garage3._0.Web.Controllers
 {
     public class MembersController : Controller
     {
         private readonly GarageContext _context;
+        private readonly IMapper _mapper;
 
-        public MembersController(GarageContext context)
+        public MembersController(GarageContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: Members
@@ -55,15 +59,21 @@ namespace Garage3._0.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,PersonNr,Email")] MemberEntity memberEntity)
+        public async Task<IActionResult> Create([Bind("Id,Name,PersonNr,Email")] MemberCreateViewModel memberCreateViewModel)
         {
             if (ModelState.IsValid)
             {
+                MemberEntity memberEntity = _mapper.Map<MemberEntity>(memberCreateViewModel); 
+
+                //MemberEntity memberEntity2 = new MemberEntity()
+                //{
+                //    Email = memberRegistrationViewModel.Email,
+                //};
                 _context.Add(memberEntity);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(memberEntity);
+            return View(memberCreateViewModel);
         }
 
         // GET: Members/Edit/5
