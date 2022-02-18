@@ -1,5 +1,5 @@
-﻿using Garage3._0.Web.Data;
-using Garage3._0.Web.Garagemapper;
+﻿using Garage3._0.Web.Automapper;
+using Garage3._0.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 

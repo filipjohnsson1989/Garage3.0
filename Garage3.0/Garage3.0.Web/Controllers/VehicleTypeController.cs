@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Garage3._0.Web.Data;
 using Garage3._0.Web.Models.Entities;
 
-namespace Garage3._0.Web.Models.ViewModels
+namespace Garage3._0.Web.Controllers
 {
     public class VehicleTypeController : Controller
     {
