@@ -82,7 +82,7 @@ namespace Garage3._0.Web.Migrations
                     b.ToTable("VehicleEntity");
                 });
 
-            modelBuilder.Entity("Garage3._0.Web.Models.Entities.VehicleType", b =>
+            modelBuilder.Entity("Garage3._0.Web.Models.Entities.VehicleTypeEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -90,25 +90,16 @@ namespace Garage3._0.Web.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("VehicleTypes")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Wheels")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("VehicleType");
-                });
-
-            modelBuilder.Entity("Garage3._0.Web.Models.Entities.VehicleEntity", b =>
-                {
-                    b.HasOne("Garage3._0.Web.Models.Entities.MemberEntity", null)
-                        .WithMany("Vehicles")
-                        .HasForeignKey("MemberEntityId");
-                });
-
-            modelBuilder.Entity("Garage3._0.Web.Models.Entities.MemberEntity", b =>
-                {
-                    b.Navigation("Vehicles");
+                    b.ToTable("VehicleTypeEntity");
                 });
 #pragma warning restore 612, 618
         }
