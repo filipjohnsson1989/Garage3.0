@@ -12,7 +12,4 @@ public class VehicleEntity
 
     public string Model { get; set; }
     public string? Color { get; set; }
-
-    
-
 }
