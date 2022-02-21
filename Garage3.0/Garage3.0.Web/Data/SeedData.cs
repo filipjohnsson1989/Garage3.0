@@ -9,15 +9,12 @@ namespace Garage3._0.Web.Data
         private static Faker faker = null;
         public static async Task InitAsync(GarageContext db)
         {
-            if (await db.VehicleTypeEntity.AnyAsync()) return;
+            if (await db.VehicleTypes.AnyAsync()) return;
 
             faker = new Faker("sv");
 
             var vehicleTypes = GetVehicleTypes();
             await db.AddRangeAsync(vehicleTypes);
-
-            var parkingSpots = GetParkingSpots();
-            await db.AddRangeAsync(parkingSpots);
 
             await db.SaveChangesAsync();
         }
