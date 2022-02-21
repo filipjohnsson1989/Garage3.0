@@ -15,7 +15,7 @@ namespace Garage3._0.Web.Validations
 
                 if (model != null)
                 {
-                    if (model.LastName != model.FirstName)
+                    if (input != model.FirstName)
                         return ValidationResult.Success;
                     else
                         return new ValidationResult(errorMessage);

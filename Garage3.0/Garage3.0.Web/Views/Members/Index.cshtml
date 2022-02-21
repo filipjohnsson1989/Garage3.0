@@ -10,19 +10,33 @@
 	<a asp-action="Create">Register new member</a>
 </p>
 
+ @foreach(var member in Model)	
+ {
+
 <div class="card text-center">
 	<div class="card-header">
 		Member Name
 	</div>
 	<div class="card-body">
-		<h5 class="card-title">This is a test</h5>
+		<h5 class="card-title">@member.Name</h5>
 		<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-		<a href="#" class="btn btn-primary">Go somewhere</a>
+			<a asp-action="Edit" asp-route-id="@member.Id">Edit</a> 
+					<a asp-action="Details" asp-route-id="@member.Id">Details</a> 
+					<a asp-action="Delete" asp-route-id="@member.Id">Delete</a>
 	</div>
 	<div class="card-footer text-muted">
 		2 days ago
 	</div>
 </div>
+
+ }
+
+
+
+
+
+
+
 <table class="table">
 	<thead>
 		<tr>
