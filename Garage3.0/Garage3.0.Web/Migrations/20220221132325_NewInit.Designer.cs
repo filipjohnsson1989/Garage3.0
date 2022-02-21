@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage3._0.Web.Migrations
 {
     [DbContext(typeof(GarageContext))]
-    [Migration("20220221091204_NewInit")]
+    [Migration("20220221132325_NewInit")]
     partial class NewInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -110,7 +110,7 @@ namespace Garage3._0.Web.Migrations
                     b.Property<string>("Color")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MemberEntityId")
+                    b.Property<int>("MemberId")
                         .HasColumnType("int");
 
                     b.Property<string>("Model")
@@ -124,7 +124,7 @@ namespace Garage3._0.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MemberEntityId");
+                    b.HasIndex("MemberId");
 
                     b.HasIndex("VehicleTypeId");
 
@@ -173,7 +173,7 @@ namespace Garage3._0.Web.Migrations
                 {
                     b.HasOne("Garage3._0.Web.Models.Entities.MemberEntity", "Member")
                         .WithMany("Vehicles")
-                        .HasForeignKey("MemberEntityId")
+                        .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

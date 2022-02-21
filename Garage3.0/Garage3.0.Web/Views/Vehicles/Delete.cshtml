@@ -1,4 +1,4 @@
-﻿@model Garage3._0.Web.Models.Entities.VehicleEntity
+﻿@model Garage3._0.Web.Models.ViewModels.VehicleViewModel
 
 @{
     ViewData["Title"] = "Delete";
@@ -11,6 +11,18 @@
     <h4>VehicleEntity</h4>
     <hr />
     <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MemberName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MemberName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.VehicleTypeTitle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.VehicleTypeTitle)
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.RegNo)
         </dt>
@@ -28,18 +40,6 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Model)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.VehicleType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.VehicleType)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Member)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Member)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Color)

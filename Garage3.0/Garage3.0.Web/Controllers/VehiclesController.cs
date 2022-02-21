@@ -21,9 +21,9 @@ public class VehiclesController : Controller
     // GET: Vehicles
     public async Task<IActionResult> Index()
     {
-        var model = _mapper.ProjectTo<VehicleIndexViewModel>(_context.Vehicles)
+        var model = _mapper.ProjectTo<VehicleViewModel>(_context.Vehicles)
             .OrderBy(s => s.Id);
-            //.Take(10);
+        //.Take(10);
         return View(await model.ToListAsync());
     }
 
@@ -35,14 +35,16 @@ public class VehiclesController : Controller
             return NotFound();
         }
 
-        var vehicleEntity = await _context.Vehicles
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var vehicleEntity = await _context.Vehicles.Include(vehicle => vehicle.VehicleType).FirstOrDefaultAsync(vehicle => vehicle.Id == id);
         if (vehicleEntity == null)
         {
             return NotFound();
         }
 
-        return View(vehicleEntity);
+        var vehicleViewModel = _mapper.Map<VehicleViewModel>(vehicleEntity);
+
+
+        return View(vehicleViewModel);
     }
 
     // GET: Vehicles/Create
@@ -56,11 +58,11 @@ public class VehiclesController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,MemberId,VehicleTypeId,RegNo,Brand,Model,Color")] VehicleCreateViewModel viewModel)
+    public async Task<IActionResult> Create([Bind("Id,MemberId,VehicleType,RegNo,Brand,Model,Color")] VehicleCreateViewModel viewModel)
     {
         if (ModelState.IsValid)
         {
-            var vehicleTypeEntity = _context.VehicleTypes.FirstOrDefault(vehicleType => vehicleType.Id == viewModel.VehicleTypeId);
+            var vehicleTypeEntity = _context.VehicleTypes.FirstOrDefault(vehicleType => vehicleType.Id == viewModel.VehicleType.Id);
             var memberEntity = _context.Members.FirstOrDefault(member => member.Id == viewModel.MemberId);
 
             var vehicleEntity = _mapper.Map<VehicleEntity>(viewModel);
@@ -82,12 +84,17 @@ public class VehiclesController : Controller
             return NotFound();
         }
 
-        var vehicleEntity = await _context.Vehicles.FindAsync(id);
+        var vehicleEntity = await _context.Vehicles.Include(vehicle => vehicle.VehicleType).FirstOrDefaultAsync(vehicle => vehicle.Id == id);
+
+
         if (vehicleEntity == null)
         {
             return NotFound();
         }
-        return View(vehicleEntity);
+
+        var vehicleViewModel = _mapper.Map<VehicleEditViewModel>(vehicleEntity);
+
+        return View(vehicleViewModel);
     }
 
     // POST: Vehicles/Edit/5
@@ -95,9 +102,9 @@ public class VehiclesController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Id,Member,VehicleType,RegNo,Brand,Member,Color")] VehicleEntity vehicleEntity)
+    public async Task<IActionResult> Edit(int id, [Bind("Id,Member,VehicleType,RegNo,Brand,Model,Color")] VehicleEditViewModel viewModel)
     {
-        if (id != vehicleEntity.Id)
+        if (id != viewModel.Id)
         {
             return NotFound();
         }
@@ -106,12 +113,19 @@ public class VehiclesController : Controller
         {
             try
             {
+                var vehicleTypeEntity = _context.VehicleTypes.FirstOrDefault(vehicleType => vehicleType.Id == viewModel.VehicleType.Id);
+                var memberEntity = _context.Members.FirstOrDefault(member => member.Id == viewModel.MemberId);
+
+                var vehicleEntity = _mapper.Map<VehicleEntity>(viewModel);
+                vehicleEntity.VehicleType = vehicleTypeEntity;
+                vehicleEntity.Member = memberEntity;
+
                 _context.Update(vehicleEntity);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!VehicleEntityExists(vehicleEntity.Id))
+                if (!VehicleEntityExists(viewModel.Id))
                 {
                     return NotFound();
                 }
@@ -122,7 +136,7 @@ public class VehiclesController : Controller
             }
             return RedirectToAction(nameof(Index));
         }
-        return View(vehicleEntity);
+        return View(viewModel);
     }
 
     // GET: Vehicles/Delete/5
@@ -133,14 +147,16 @@ public class VehiclesController : Controller
             return NotFound();
         }
 
-        var vehicleEntity = await _context.Vehicles
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var vehicleEntity = await _context.Vehicles.Include(vehicle => vehicle.VehicleType).FirstOrDefaultAsync(vehicle => vehicle.Id == id);
+
         if (vehicleEntity == null)
         {
             return NotFound();
         }
 
-        return View(vehicleEntity);
+        var vehicleViewModel = _mapper.Map<VehicleViewModel>(vehicleEntity);
+
+        return View(vehicleViewModel);
     }
 
     // POST: Vehicles/Delete/5

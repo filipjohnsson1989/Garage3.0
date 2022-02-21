@@ -9,8 +9,11 @@ public class GarageMappings : Profile
     public GarageMappings()
     {
         CreateMap<MemberEntity, MemberCreateViewModel>().ReverseMap();
-        CreateMap<VehicleEntity, VehicleIndexViewModel>();
+        CreateMap<VehicleEntity, VehicleViewModel>();
+        CreateMap<VehicleTypeViewModel, VehicleTypeEntity>().ReverseMap();
         CreateMap<VehicleCreateViewModel, VehicleEntity>();
+        CreateMap<VehicleEditViewModel, VehicleEntity>().ReverseMap();
+
 
     }
 }

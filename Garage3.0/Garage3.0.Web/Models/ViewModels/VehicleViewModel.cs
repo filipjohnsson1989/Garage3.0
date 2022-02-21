@@ -4,7 +4,7 @@ namespace Garage3._0.Web.Models.ViewModels;
 //ToDo: It doesn't work with Auto-mapper (Usage in controller)
 //public record VehicleIndexViewModel(int Id, string MemberName, string VehicleTypeTitle, string RegNo, string Brand, string Model, string? Color);
 
-public class VehicleIndexViewModel
+public class VehicleViewModel
 {
     public int Id { get; set; }
     public string MemberName { get; set; }

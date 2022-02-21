@@ -43,7 +43,7 @@ namespace Garage3._0.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Members", (string)null);
+                    b.ToTable("Members");
                 });
 
             modelBuilder.Entity("Garage3._0.Web.Models.Entities.ParkingActivityEntity", b =>
@@ -75,7 +75,7 @@ namespace Garage3._0.Web.Migrations
 
                     b.HasIndex("VehicleEntityId");
 
-                    b.ToTable("ParkingActivities", (string)null);
+                    b.ToTable("ParkingActivities");
                 });
 
             modelBuilder.Entity("Garage3._0.Web.Models.Entities.ParkingSpotEntity", b =>
@@ -91,7 +91,7 @@ namespace Garage3._0.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ParkingSpots", (string)null);
+                    b.ToTable("ParkingSpots");
                 });
 
             modelBuilder.Entity("Garage3._0.Web.Models.Entities.VehicleEntity", b =>
@@ -108,7 +108,7 @@ namespace Garage3._0.Web.Migrations
                     b.Property<string>("Color")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MemberEntityId")
+                    b.Property<int>("MemberId")
                         .HasColumnType("int");
 
                     b.Property<string>("Model")
@@ -122,11 +122,11 @@ namespace Garage3._0.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MemberEntityId");
+                    b.HasIndex("MemberId");
 
                     b.HasIndex("VehicleTypeId");
 
-                    b.ToTable("Vehicles", (string)null);
+                    b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("Garage3._0.Web.Models.Entities.VehicleTypeEntity", b =>
@@ -145,7 +145,7 @@ namespace Garage3._0.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("VehicleTypes", (string)null);
+                    b.ToTable("VehicleTypes");
                 });
 
             modelBuilder.Entity("Garage3._0.Web.Models.Entities.ParkingActivityEntity", b =>
@@ -171,7 +171,7 @@ namespace Garage3._0.Web.Migrations
                 {
                     b.HasOne("Garage3._0.Web.Models.Entities.MemberEntity", "Member")
                         .WithMany("Vehicles")
-                        .HasForeignKey("MemberEntityId")
+                        .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

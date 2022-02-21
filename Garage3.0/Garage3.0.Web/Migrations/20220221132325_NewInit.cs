@@ -61,15 +61,15 @@ namespace Garage3._0.Web.Migrations
                     Brand = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Model = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MemberEntityId = table.Column<int>(type: "int", nullable: false),
+                    MemberId = table.Column<int>(type: "int", nullable: false),
                     VehicleTypeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Vehicles", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Vehicles_Members_MemberEntityId",
-                        column: x => x.MemberEntityId,
+                        name: "FK_Vehicles_Members_MemberId",
+                        column: x => x.MemberId,
                         principalTable: "Members",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -121,9 +121,9 @@ namespace Garage3._0.Web.Migrations
                 column: "VehicleEntityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vehicles_MemberEntityId",
+                name: "IX_Vehicles_MemberId",
                 table: "Vehicles",
-                column: "MemberEntityId");
+                column: "MemberId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Vehicles_VehicleTypeId",

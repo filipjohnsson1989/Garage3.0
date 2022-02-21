@@ -3,8 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Garage3._0.Web.Models.ViewModels;
 
-public class VehicleCreateViewModel
+public class VehicleEditViewModel
 {
+    public int Id { get; set; }
     public int MemberId { get; set; }
 
     [Display(Name = "Vehicle Type")]

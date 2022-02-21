@@ -1,9 +1,15 @@
-﻿@using Garage3._0.Web.Services
+﻿@model Garage3._0.Web.Models.ViewModels.VehicleTypeViewModel
+
+@using Garage3._0.Web.Services
 @inject IVehicleTypeService service
 
 <div class="form-group">
-    <select class="form-control" name="VehicleTypeId" asp-items="@await service.GetVehicleTypes()">
-        <option selected="selected" value="">Choose a type</option>
+    <select class="form-control" asp-for="Id" asp-items="@await service.GetVehicleTypes(Model is null? null: Model.Id)">
+        @if (Model is null)
+        {
+            <option selected="selected" value="">Choose a type</option>
+
+        }
     </select>
 </div>
 
