@@ -12,11 +12,14 @@ public class GarageContext : DbContext
 
     public DbSet<MemberEntity> Members { get; set; }
 
+    public DbSet<ParkingSpotEntity> ParkingSpots { get; set; }
+
     public GarageContext(DbContextOptions<GarageContext> options)
         : base(options)
     {
-
+        
     }
+    
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -30,4 +33,5 @@ public class GarageContext : DbContext
             .IsRequired();
         //base.OnModelCreating(modelBuilder); 
     }
+
 }
