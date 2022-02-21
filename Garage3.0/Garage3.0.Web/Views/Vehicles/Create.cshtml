@@ -13,9 +13,11 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="MemberId" class="control-label"></label>
-                <input asp-for="MemberId" class="form-control" />
-                <span asp-validation-for="MemberId" class="text-danger"></span>
+                <label asp-for="Member.Id" class="control-label"></label>
+                <partial name="_MemberInput" for="Member" />
+                @*<input id="memberAutocompelete" type="text" class="form-control" />
+                <input asp- asp-for="MemberId" type="hidden" />*@
+                <span asp-validation-for="Member.Id" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="VehicleType" class="control-label"></label>
@@ -42,6 +44,7 @@
                 <input asp-for="Color" class="form-control" />
                 <span asp-validation-for="Color" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="Register" class="btn btn-primary" />
             </div>
@@ -56,5 +59,9 @@
 @section Scripts {
     @{
     await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/js/member.js"></script>
+
 }
 }

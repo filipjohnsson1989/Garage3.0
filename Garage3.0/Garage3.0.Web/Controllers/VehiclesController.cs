@@ -35,7 +35,10 @@ public class VehiclesController : Controller
             return NotFound();
         }
 
-        var vehicleEntity = await _context.Vehicles.Include(vehicle => vehicle.VehicleType).FirstOrDefaultAsync(vehicle => vehicle.Id == id);
+        var vehicleEntity = await _context.Vehicles
+            .Include(vehicle => vehicle.Member)
+            .Include(vehicle => vehicle.VehicleType)
+            .FirstOrDefaultAsync(vehicle => vehicle.Id == id);
         if (vehicleEntity == null)
         {
             return NotFound();
@@ -58,12 +61,12 @@ public class VehiclesController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,MemberId,VehicleType,RegNo,Brand,Model,Color")] VehicleCreateViewModel viewModel)
+    public async Task<IActionResult> Create([Bind("Id,Member,VehicleType,RegNo,Brand,Model,Color")] VehicleCreateViewModel viewModel)
     {
         if (ModelState.IsValid)
         {
             var vehicleTypeEntity = _context.VehicleTypes.FirstOrDefault(vehicleType => vehicleType.Id == viewModel.VehicleType.Id);
-            var memberEntity = _context.Members.FirstOrDefault(member => member.Id == viewModel.MemberId);
+            var memberEntity = _context.Members.FirstOrDefault(member => member.Id == viewModel.Member.Id);
 
             var vehicleEntity = _mapper.Map<VehicleEntity>(viewModel);
             vehicleEntity.VehicleType = vehicleTypeEntity;
@@ -84,7 +87,10 @@ public class VehiclesController : Controller
             return NotFound();
         }
 
-        var vehicleEntity = await _context.Vehicles.Include(vehicle => vehicle.VehicleType).FirstOrDefaultAsync(vehicle => vehicle.Id == id);
+        var vehicleEntity = await _context.Vehicles
+            .Include(vehicle => vehicle.Member)
+            .Include(vehicle => vehicle.VehicleType)
+            .FirstOrDefaultAsync(vehicle => vehicle.Id == id);
 
 
         if (vehicleEntity == null)
@@ -114,7 +120,7 @@ public class VehiclesController : Controller
             try
             {
                 var vehicleTypeEntity = _context.VehicleTypes.FirstOrDefault(vehicleType => vehicleType.Id == viewModel.VehicleType.Id);
-                var memberEntity = _context.Members.FirstOrDefault(member => member.Id == viewModel.MemberId);
+                var memberEntity = _context.Members.FirstOrDefault(member => member.Id == viewModel.Member.Id);
 
                 var vehicleEntity = _mapper.Map<VehicleEntity>(viewModel);
                 vehicleEntity.VehicleType = vehicleTypeEntity;
@@ -147,7 +153,10 @@ public class VehiclesController : Controller
             return NotFound();
         }
 
-        var vehicleEntity = await _context.Vehicles.Include(vehicle => vehicle.VehicleType).FirstOrDefaultAsync(vehicle => vehicle.Id == id);
+        var vehicleEntity = await _context.Vehicles
+            .Include(vehicle => vehicle.Member)
+            .Include(vehicle => vehicle.VehicleType)
+            .FirstOrDefaultAsync(vehicle => vehicle.Id == id);
 
         if (vehicleEntity == null)
         {

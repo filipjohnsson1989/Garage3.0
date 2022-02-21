@@ -1,4 +1,6 @@
 ﻿#nullable disable
+using System.ComponentModel.DataAnnotations;
+
 namespace Garage3._0.Web.Models.ViewModels;
 
 //ToDo: It doesn't work with Auto-mapper (Usage in controller)
@@ -7,7 +9,9 @@ namespace Garage3._0.Web.Models.ViewModels;
 public class VehicleViewModel
 {
     public int Id { get; set; }
+    [Display(Name = "Member")]
     public string MemberName { get; set; }
+    [Display(Name = "Vehicle Type")]
     public string VehicleTypeTitle { get; set; }
     public string RegNo { get; set; }
 
