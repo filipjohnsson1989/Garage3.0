@@ -62,7 +62,7 @@ namespace Garage3._0.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName, LastName,PersonNr,Email")] MemberCreateViewModel memberCreateViewModel)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,PersonNr,Email")] MemberCreateViewModel memberCreateViewModel)
         {
             if (ModelState.IsValid)
             {
