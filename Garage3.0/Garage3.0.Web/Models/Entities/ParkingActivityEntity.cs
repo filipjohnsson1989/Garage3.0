@@ -19,6 +19,9 @@ namespace Garage3._0.Web.Models.Entities
         //[ForeignKey("Id")]
         public int VehicleEntityId { get; set; }
         public VehicleEntity Vehicle { get; set; }
-        
+
+        public int ParkingSpotId { get; set; }
+        public ParkingSpot ParkingSpot { get; set; }
+
     }
 }

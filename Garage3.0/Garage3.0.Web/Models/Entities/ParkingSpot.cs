@@ -28,6 +28,6 @@
             this.IsAvailable = true;
         }
 
-
+        public ICollection<ParkingActivityEntity> ParkingActivityEntities { get; set; }
     }
 }
