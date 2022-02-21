@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Garage3._0.Web.Models.Entities.MemberEntity>
+﻿@model IEnumerable<Garage3._0.Web.Models.ViewModels.MemberIndexViewModel>
 
 @{
 	ViewData["Title"] = "Member list";
@@ -10,28 +10,39 @@
 	<a asp-action="Create">Register new member</a>
 </p>
 
-<div class="card text-center">
-	<div class="card-header">
-		Member Name
-	</div>
-	<div class="card-body">
-		<h5 class="card-title">Special title treatment</h5>
-		<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-		<a href="#" class="btn btn-primary">Go somewhere</a>
-	</div>
-	<div class="card-footer text-muted">
-		2 days ago
-	</div>
-</div>
+@foreach  (var member in Model)
+{
+	
+	  <div class="row-cols-4 mb-3 d-grid">
+		<div class="card text-center">
+			<div class="card-header">
+				<h5 class="card-title">@member.Name</h5>
+			</div>
+			<div class="card-body">
+				@*<h5 class="card-title">@member.Name</h5>*@
+				<p class="card-text">This is a registered member. Click below to view details, edit or delete this member.</p>
+			<a asp-action="Edit" asp-route-id="@member.Id">Edit</a>
+			<a asp-action="Details" asp-route-id="@member.Id">Details</a>
+			<a asp-action="Delete" asp-route-id="@member.Id">Delete</a>
+			</div>
+			<div class="card-footer text-muted">
+				E-mail: @member.Email
+			</div>
+		</div>
+	  </div>
+
+}
+
+
 <table class="table">
 	<thead>
 		<tr>
 			<th>
 				@Html.DisplayNameFor(model => model.Name)
 			</th>
-			<th>
+			@*<th>
 				@Html.DisplayNameFor(model => model.PersonNr)
-			</th>
+					</th>*@
 			<th>
 				@Html.DisplayNameFor(model => model.Email)
 			</th>
@@ -45,9 +56,9 @@
 				<td>
 					@Html.DisplayFor(modelItem => item.Name)
 				</td>
-				<td>
+				@*<td>
 					@Html.DisplayFor(modelItem => item.PersonNr)
-				</td>
+						</td>*@
 				<td>
 					@Html.DisplayFor(modelItem => item.Email)
 				</td>
