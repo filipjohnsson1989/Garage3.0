@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Garage3._0.Web.Validations
 {
-    public class CheckNameAttribute  : ValidationAttribute
+    public class CheckNameAttribute : ValidationAttribute
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
