@@ -14,6 +14,8 @@ public class GarageContext : DbContext
 
     public DbSet<ParkingSpotEntity> ParkingSpots { get; set; }
 
+    public DbSet<ParkingActivityEntity> ParkingActivities { get; set; } 
+
     public GarageContext(DbContextOptions<GarageContext> options)
         : base(options)
     {
