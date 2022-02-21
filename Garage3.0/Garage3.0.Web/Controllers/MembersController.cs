@@ -25,7 +25,7 @@ namespace Garage3._0.Web.Controllers
         }
 
         // GET: Members
-        public async Task<IActionResult> Index(MemberIndexViewModel memberIndexViewModel =null)
+        public async Task<IActionResult> Index(MemberIndexViewModel memberIndexViewModel = null)
         {
             // MemberEntity memberEntity = _mapper.Map<MemberEntity>(memberIndexViewModel);
             var model = _context.Members.Select(m => new MemberIndexViewModel
@@ -181,7 +181,7 @@ namespace Garage3._0.Web.Controllers
             //}
             return Json(
                 await _context.Members
-                .Where(member => member.Name.Contains(term)|| member.PersonNr.ToString().Contains(term))
+                .Where(member => member.Name.Contains(term) || member.PersonNr.Contains(term))
                 //.Select(member => new { member.Id, Label = member.Name, member.PersonNr, member.Email })
                 .ToListAsync());
 

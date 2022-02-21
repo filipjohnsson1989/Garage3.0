@@ -25,6 +25,10 @@ public class GarageContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<MemberEntity>()
+               .Property(u => u.Name)
+               .HasComputedColumnSql("[FirstName] + ' ' + [LastName]");
+
         modelBuilder.Entity<VehicleEntity>()
             .HasOne(v => v.VehicleType)
             .WithMany(vt => vt.Vehicles)
