@@ -21,6 +21,8 @@
 			<div class="card-body">
 				@*<h5 class="card-title">@member.Name</h5>*@
 				<p class="card-text">This is a registered member. Click below to view details, edit or delete this member.</p>
+				<p class="card-text">You can register a new vehicle from the details view.</p>
+
 			<a asp-action="Edit" asp-route-id="@member.Id">Edit</a>
 			<a asp-action="Details" asp-route-id="@member.Id">Details</a>
 			<a asp-action="Delete" asp-route-id="@member.Id">Delete</a>

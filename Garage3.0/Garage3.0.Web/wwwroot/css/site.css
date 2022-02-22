@@ -35,4 +35,8 @@ body {
     color: white;
     padding: 3rem;
     margin-bottom: 3rem;
+} 
+
+.taken {
+   background-color: red;
 }

@@ -11,7 +11,7 @@ namespace Garage3._0.Web.Validations
 
             if (value is string input)
             {
-                var model = validationContext.ObjectInstance as MemberCreateViewModel;
+                var model = validationContext.ObjectInstance as IMemberViewModel;
 
                 if (model != null)
                 {
