@@ -19,12 +19,28 @@ public class VehiclesController : Controller
     }
 
     // GET: Vehicles
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string? searchString)
     {
-        var model = _mapper.ProjectTo<VehicleIndexViewModel>(_context.Vehicles)
+        var model = _mapper.ProjectTo<VehicleIndexViewModel>(_context.Vehicles.Where(vehicle=> (searchString == null || vehicle.RegNo.Contains(searchString))))
             .OrderBy(s => s.Id);
-            //.Take(10);
+        //.Take(10);
+
+        //var vehicles = from v in _context.Vehicles
+        //               select v;
+
+        
+        //if(!String.IsNullOrEmpty(searchString))
+        //{
+        //    model = model.Where(vehicle => vehicle.RegNo.Contains(searchString));
+        //}
+        
         return View(await model.ToListAsync());
+    }
+
+    [HttpPost]
+    public string Index(FormCollection fc, string searchString)
+    {
+        return "<h3> From [HttpPost]Index: filter from: " + searchString +"</h3>";
     }
 
     // GET: Vehicles/Details/5
