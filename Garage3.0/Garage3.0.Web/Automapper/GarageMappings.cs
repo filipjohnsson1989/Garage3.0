@@ -18,6 +18,7 @@ public class GarageMappings : Profile
         CreateMap<ParkingSpotViewModel, ParkingSpotEntity>().ReverseMap();
         CreateMap<ParkingActivityCheckInViewModel, ParkingActivityEntity>();
         CreateMap<ParkingActivityEntity, ParkingActivityIndexViewModel>();
+        CreateMap<ParkingActivityEntity, ParkingActivityCheckOutViewModel>();
 
     }
 }
