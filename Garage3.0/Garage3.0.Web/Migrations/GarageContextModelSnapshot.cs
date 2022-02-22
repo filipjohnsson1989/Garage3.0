@@ -74,17 +74,17 @@ namespace Garage3._0.Web.Migrations
                     b.Property<double?>("ParkingCost")
                         .HasColumnType("float");
 
-                    b.Property<int>("ParkingSpotEntityId")
+                    b.Property<int>("ParkingSpotId")
                         .HasColumnType("int");
 
-                    b.Property<int>("VehicleEntityId")
+                    b.Property<int>("VehicleId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ParkingSpotEntityId");
+                    b.HasIndex("ParkingSpotId");
 
-                    b.HasIndex("VehicleEntityId");
+                    b.HasIndex("VehicleId");
 
                     b.ToTable("ParkingActivities");
                 });
@@ -162,14 +162,14 @@ namespace Garage3._0.Web.Migrations
             modelBuilder.Entity("Garage3._0.Web.Models.Entities.ParkingActivityEntity", b =>
                 {
                     b.HasOne("Garage3._0.Web.Models.Entities.ParkingSpotEntity", "ParkingSpot")
-                        .WithMany()
-                        .HasForeignKey("ParkingSpotEntityId")
+                        .WithMany("ParkingActivitys")
+                        .HasForeignKey("ParkingSpotId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Garage3._0.Web.Models.Entities.VehicleEntity", "Vehicle")
-                        .WithMany()
-                        .HasForeignKey("VehicleEntityId")
+                        .WithMany("ParkingActivitys")
+                        .HasForeignKey("VehicleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -200,6 +200,16 @@ namespace Garage3._0.Web.Migrations
             modelBuilder.Entity("Garage3._0.Web.Models.Entities.MemberEntity", b =>
                 {
                     b.Navigation("Vehicles");
+                });
+
+            modelBuilder.Entity("Garage3._0.Web.Models.Entities.ParkingSpotEntity", b =>
+                {
+                    b.Navigation("ParkingActivitys");
+                });
+
+            modelBuilder.Entity("Garage3._0.Web.Models.Entities.VehicleEntity", b =>
+                {
+                    b.Navigation("ParkingActivitys");
                 });
 
             modelBuilder.Entity("Garage3._0.Web.Models.Entities.VehicleTypeEntity", b =>

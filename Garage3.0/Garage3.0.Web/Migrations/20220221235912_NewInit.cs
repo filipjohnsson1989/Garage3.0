@@ -92,35 +92,35 @@ namespace Garage3._0.Web.Migrations
                     CheckIn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CheckOut = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ParkingCost = table.Column<double>(type: "float", nullable: true),
-                    VehicleEntityId = table.Column<int>(type: "int", nullable: false),
-                    ParkingSpotEntityId = table.Column<int>(type: "int", nullable: false)
+                    VehicleId = table.Column<int>(type: "int", nullable: false),
+                    ParkingSpotId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ParkingActivities", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ParkingActivities_ParkingSpots_ParkingSpotEntityId",
-                        column: x => x.ParkingSpotEntityId,
+                        name: "FK_ParkingActivities_ParkingSpots_ParkingSpotId",
+                        column: x => x.ParkingSpotId,
                         principalTable: "ParkingSpots",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ParkingActivities_Vehicles_VehicleEntityId",
-                        column: x => x.VehicleEntityId,
+                        name: "FK_ParkingActivities_Vehicles_VehicleId",
+                        column: x => x.VehicleId,
                         principalTable: "Vehicles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ParkingActivities_ParkingSpotEntityId",
+                name: "IX_ParkingActivities_ParkingSpotId",
                 table: "ParkingActivities",
-                column: "ParkingSpotEntityId");
+                column: "ParkingSpotId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ParkingActivities_VehicleEntityId",
+                name: "IX_ParkingActivities_VehicleId",
                 table: "ParkingActivities",
-                column: "VehicleEntityId");
+                column: "VehicleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Vehicles_MemberId",

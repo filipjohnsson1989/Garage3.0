@@ -37,6 +37,18 @@ public class GarageContext : DbContext
             .HasOne(v => v.Member)
             .WithMany(m => m.Vehicles)
             .IsRequired();
+
+        modelBuilder.Entity<ParkingActivityEntity>()
+            .HasOne(pa => pa.ParkingSpot)
+            .WithMany(v => v.ParkingActivitys)
+            .HasForeignKey(pa => pa.ParkingSpotId)
+            .IsRequired();
+
+        modelBuilder.Entity<ParkingActivityEntity>()
+           .HasOne(pa => pa.Vehicle)
+           .WithMany(v => v.ParkingActivitys)
+           .HasForeignKey(pa => pa.VehicleId)
+           .IsRequired();
         //base.OnModelCreating(modelBuilder); 
     }
 }

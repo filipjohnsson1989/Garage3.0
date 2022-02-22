@@ -179,6 +179,24 @@ public class VehiclesController : Controller
         return RedirectToAction(nameof(Index));
     }
 
+    [HttpGet]
+    public async Task<IActionResult> Search(string term)
+    {
+        var entities = await _context.Vehicles
+             .Where(vehicle => vehicle.RegNo.Contains(term))
+             .Include(vehicle => vehicle.Member)
+             .Include(vehicle => vehicle.VehicleType)
+             .Where(vehicle => 
+             (
+                !vehicle.ParkingActivitys.Where(parkingActivity=> !parkingActivity.CheckOut.HasValue).Any())
+             )
+             .ToListAsync();
+
+        var viewModel=_mapper.Map<List<VehicleViewModel>>(entities);
+        return Json(viewModel);
+
+    }
+
     private bool VehicleEntityExists(int id)
     {
         return _context.Vehicles.Any(e => e.Id == id);

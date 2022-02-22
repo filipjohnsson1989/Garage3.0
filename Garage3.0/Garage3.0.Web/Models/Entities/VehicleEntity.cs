@@ -21,7 +21,7 @@ public class VehicleEntity
     //public int VehicleTypeId { get; set; }
     public VehicleTypeEntity VehicleType { get; set; }
 
-    //public ICollection<ParkingActivityEntity> ParkingActivityEntities { get; set; }
+    public ICollection<ParkingActivityEntity> ParkingActivitys { get; set; }
 
 
 }

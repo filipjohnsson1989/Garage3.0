@@ -17,10 +17,10 @@ namespace Garage3._0.Web.Models.Entities
         //Nav prop
 
         //[ForeignKey("Id")]
-        public int VehicleEntityId { get; set; }
+        public int VehicleId { get; set; }
         public VehicleEntity Vehicle { get; set; }
 
-        public int ParkingSpotEntityId { get; set; }
+        public int ParkingSpotId { get; set; }
         public ParkingSpotEntity ParkingSpot { get; set; }
 
     }
