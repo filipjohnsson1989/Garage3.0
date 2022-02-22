@@ -49,7 +49,7 @@ public class VehicleTypesController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,VehicleTypes")] VehicleTypeEntity vehicleType)
+    public async Task<IActionResult> Create([Bind("Id, Title, Wheels")] VehicleTypeEntity vehicleType)
     {
         if (ModelState.IsValid)
         {
@@ -81,7 +81,7 @@ public class VehicleTypesController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Id,VehicleTypes")] VehicleTypeEntity vehicleType)
+    public async Task<IActionResult> Edit(int id, [Bind("Id, Title, Wheels")] VehicleTypeEntity vehicleType)
     {
         if (id != vehicleType.Id)
         {
