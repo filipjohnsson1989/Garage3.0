@@ -8,6 +8,7 @@ namespace Garage3._0.Web.Models.ViewModels;
 
 public class VehicleViewModel
 {
+    [Required]
     public int Id { get; set; }
     [Display(Name = "Member")]
     public string MemberName { get; set; }
