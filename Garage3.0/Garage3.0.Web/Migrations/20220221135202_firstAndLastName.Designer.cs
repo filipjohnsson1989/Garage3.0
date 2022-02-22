@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage3._0.Web.Migrations
 {
     [DbContext(typeof(GarageContext))]
-    [Migration("20220218105821_RenamingToHaveWithoutEntitySuffixInDb")]
-    partial class RenamingToHaveWithoutEntitySuffixInDb
+    [Migration("20220221135202_firstAndLastName")]
+    partial class firstAndLastName
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,16 +35,37 @@ namespace Garage3._0.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PersonNr")
-                        .HasColumnType("int");
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PersonNr")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Members");
+                });
+
+            modelBuilder.Entity("Garage3._0.Web.Models.Entities.ParkingSpotEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("SpotNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ParkingSpots");
                 });
 
             modelBuilder.Entity("Garage3._0.Web.Models.Entities.VehicleEntity", b =>

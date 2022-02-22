@@ -25,9 +25,18 @@ namespace Garage3._0.Web.Controllers
         }
 
         // GET: Members
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(MemberIndexViewModel memberIndexViewModel =null)
         {
-            return View(await _context.Members.ToListAsync());
+            // MemberEntity memberEntity = _mapper.Map<MemberEntity>(memberIndexViewModel);
+            var model = _context.Members.Select(m => new MemberIndexViewModel
+            {
+                Id = m.Id,
+                Name = m.Name,
+                FirstName = m.FirstName,
+                LastName = m.LastName,
+                Email = m.Email
+            });
+            return View(model);
         }
 
         // GET: Members/Details/5
@@ -59,7 +68,7 @@ namespace Garage3._0.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,PersonNr,Email")] MemberCreateViewModel memberCreateViewModel)
+        public async Task<IActionResult> Create(MemberCreateViewModel memberCreateViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +106,7 @@ namespace Garage3._0.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,PersonNr,Email")] MemberEntity memberEntity)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,PersonNr,Email")] MemberEntity memberEntity)
         {
             if (id != memberEntity.Id)
             {
