@@ -13,7 +13,7 @@
 @foreach  (var member in Model)
 {
 	
-	  <div class="row-cols-4 mb-3 d-grid">
+	  <div class="row-cols-1 mb-3 d-inline-flex">
 		<div class="card text-center">
 			<div class="card-header">
 				<h5 class="card-title">@member.Name</h5>
@@ -30,19 +30,18 @@
 			</div>
 		</div>
 	  </div>
-
 }
 
-
+@*
 <table class="table">
 	<thead>
 		<tr>
 			<th>
 				@Html.DisplayNameFor(model => model.Name)
 			</th>
-			@*<th>
+			<th>
 				@Html.DisplayNameFor(model => model.PersonNr)
-					</th>*@
+					</th>
 			<th>
 				@Html.DisplayNameFor(model => model.Email)
 			</th>
@@ -56,9 +55,9 @@
 				<td>
 					@Html.DisplayFor(modelItem => item.Name)
 				</td>
-				@*<td>
+				<td>
 					@Html.DisplayFor(modelItem => item.PersonNr)
-						</td>*@
+						</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.Email)
 				</td>
@@ -71,3 +70,4 @@
 		}
 	</tbody>
 </table>
+*@
