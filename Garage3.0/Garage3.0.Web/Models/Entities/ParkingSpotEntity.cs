@@ -6,6 +6,7 @@ public class ParkingSpotEntity
     public int Id { get; set; }
 
     public string SpotNumber { get; set; }
+    public ICollection<ParkingActivityEntity> ParkingActivitys { get; set; }
 
     //public bool IsAvailable { get; set; }
 

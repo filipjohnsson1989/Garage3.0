@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Garage3._0.Web.Services
 {
-    public interface IVehicleTypeService
+    public interface IParkingSpotService
     {
-        Task<IEnumerable<SelectListItem>> GetVehicleTypes(int? selectedId);
+        Task<IEnumerable<SelectListItem>> GetParkingSpots(int? selectedId);
     }
 }
