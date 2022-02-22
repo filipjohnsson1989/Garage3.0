@@ -4,11 +4,11 @@
         $("#Vehicle_RegNo").val(label);
     }
 
-    $('#Vehicle_Name').autocomplete({
+    $('#Vehicle_RegNo').autocomplete({
         source: '/vehicles/search',
         minLength: 2,
         focus: function (event, ui) {
-            $("#Vehicle_Name").val(ui.item.regNo);
+            $("#Vehicle_RegNo").val(ui.item.regNo);
             return false;
         },
         success: function (data) {
