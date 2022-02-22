@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Garage3._0.Web.Models.ViewModels
 {
-    public class MemberCreateViewModel
+    public class MemberCreateViewModel : IMemberViewModel
     {
         [Required]
         public string FirstName { get; set; }
@@ -22,6 +22,6 @@ namespace Garage3._0.Web.Models.ViewModels
         [Required(ErrorMessage = "Email id is required")]
         [EmailAddress(ErrorMessage = "Please enter a valid email address")]
         public string Email { get; set; }
-        
+
     }
 }

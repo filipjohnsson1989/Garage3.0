@@ -98,7 +98,9 @@ namespace Garage3._0.Web.Controllers
             {
                 return NotFound();
             }
-            return View(memberEntity);
+            var memberViewModel = _mapper.Map<MemberEditViewModel>(memberEntity);
+
+            return View(memberViewModel);
         }
 
         // POST: Members/Edit/5
@@ -106,9 +108,9 @@ namespace Garage3._0.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,PersonNr,Email")] MemberEntity memberEntity)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,PersonNr,Email")] MemberEditViewModel viewModel)
         {
-            if (id != memberEntity.Id)
+            if (id != viewModel.Id)
             {
                 return NotFound();
             }
@@ -117,12 +119,13 @@ namespace Garage3._0.Web.Controllers
             {
                 try
                 {
+                    var memberEntity = _mapper.Map<MemberEntity>(viewModel);
                     _context.Update(memberEntity);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MemberEntityExists(memberEntity.Id))
+                    if (!MemberEntityExists(viewModel.Id))
                     {
                         return NotFound();
                     }
@@ -133,7 +136,7 @@ namespace Garage3._0.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(memberEntity);
+            return View(viewModel);
         }
 
         // GET: Members/Delete/5
