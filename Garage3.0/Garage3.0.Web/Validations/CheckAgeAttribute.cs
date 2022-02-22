@@ -1,50 +1,34 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
-namespace Garage3._0.Web.Validations
+    //https://stackoverflow.com/questions/32624800/swedish-ssn-regular-expression-reject-users-under-a-specific-age
+namespace Garage3._0.Web.Validations;
+
+public class CheckAgeAttribute : ValidationAttribute
 {
-    public class CheckAgeAttribute : ValidationAttribute
+    public bool IsOfAge(DateTime birthdate)
     {
-        private readonly string min;
-        public CheckAgeAttribute(string min)
-        {
-            this.min = min;
-        }
-
-        public override bool IsValid(object? value)
-        {
-            if (value is string personNr)
-            {
-                //Personnummer.Valid("191212121212");     // => True
-                //Personnummer.Valid("121212+1212")       // => True
-                //Personnummer.Valid("20121212-1212")     // => True
-
-                string[] dateValues = { "191212121212", "121212+1212",
-                              "20121212-1212"};
-                string pattern = "MM-dd-yy";
-                DateTime parsedDate;
-                foreach (var dateValue in dateValues)
-                {
-                    if (DateTime.TryParseExact(dateValue, pattern, null,
-                                              DateTimeStyles.None, out parsedDate))
-                        Console.WriteLine("Converted '{0}' to {1:d}.",
-                                          dateValue, parsedDate);
-                    else
-                        Console.WriteLine("Unable to convert '{0}' to a date and time.",
-                                          dateValue);
-                }
-
-
-                //var date = personNr.Split('-');
-                //var age = DateTime.TryParseExact(date);
-
-
-
-            }
+        DateTime today = DateTime.Today;
+        int minAge = -18;
+        if (birthdate < today.AddYears(minAge))
+            return true;
+        else
             return false;
-        }
+    }
 
+    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    {
+        string RegExForValidation = @"^(?<date>\d{6}|\d{8})[-\s]?\d{4}$";
+        string date = Regex.Match((string)value, RegExForValidation).Groups["date"].Value;
+        DateTime dt;
+        if (DateTime.TryParseExact(date, new[] { "yyMMdd", "yyyyMMdd" }, CultureInfo.InvariantCulture, DateTimeStyles.None, out dt))
+        {
+            if (IsOfAge(dt))
+                return ValidationResult.Success;
+            else
+                return new ValidationResult("18 Years old at least");
+        }
+        return new ValidationResult("PersonNr is indicated by 10 eller 12 digits (yymmddnnnn eller yyyymmddnnnn)");
     }
 }
-
-
