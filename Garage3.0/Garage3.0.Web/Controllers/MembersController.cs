@@ -25,7 +25,7 @@ namespace Garage3._0.Web.Controllers
         }
 
         // GET: Members
-        public async Task<IActionResult> Index(MemberIndexViewModel memberIndexViewModel =null)
+        public async Task<IActionResult> Index(MemberIndexViewModel memberIndexViewModel = null)
         {
             // MemberEntity memberEntity = _mapper.Map<MemberEntity>(memberIndexViewModel);
             var model = _context.Members.Select(m => new MemberIndexViewModel
@@ -72,7 +72,7 @@ namespace Garage3._0.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                MemberEntity memberEntity = _mapper.Map<MemberEntity>(memberCreateViewModel); 
+                MemberEntity memberEntity = _mapper.Map<MemberEntity>(memberCreateViewModel);
 
                 //MemberEntity memberEntity2 = new MemberEntity()
                 //{
@@ -165,9 +165,32 @@ namespace Garage3._0.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //[Produces("application/json")]
+        [HttpGet]
+        public async Task<IActionResult> Search(string term)
+        {
+            //try
+            //{
+            //string term = HttpContext.Request.Query["term"].ToString();
+            //    var names = _context.Members.Where(p => p.Name.Contains(term)).Select(p => p.Name).ToListAsync();
+            //    return Ok(await names);
+            //}
+            //catch
+            //{
+            //    return BadRequest();
+            //}
+            return Json(
+                await _context.Members
+                .Where(member => member.Name.Contains(term) || member.PersonNr.Contains(term))
+                //.Select(member => new { member.Id, Label = member.Name, member.PersonNr, member.Email })
+                .ToListAsync());
+
+        }
+
         private bool MemberEntityExists(int id)
         {
             return _context.Members.Any(e => e.Id == id);
         }
+
     }
 }

@@ -11,7 +11,7 @@ namespace Garage3._0.Web.Models.Entities
         [Required]
         [CheckName]
         public string LastName { get; set; }
-        public string Name => $"{FirstName} {LastName}";
+        public string Name { get; private set; }
         //[Required]
         public string PersonNr { get; set; }
         [Required]
