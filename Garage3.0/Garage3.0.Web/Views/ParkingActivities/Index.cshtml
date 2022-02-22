@@ -61,7 +61,10 @@
                 @Html.DisplayFor(modelItem => item.ParkingCost)
             </td>
             <td>
-                <a asp-action="CheckOut" asp-route-id="@item.Id">Check Out</a>
+                    @if (!item.CheckOut.HasValue)
+                    {
+                        <a asp-action="CheckOut" asp-route-id="@item.Id">Check Out</a>
+                    }
             </td>
         </tr>
 }
