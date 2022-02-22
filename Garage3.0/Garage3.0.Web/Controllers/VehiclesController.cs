@@ -21,7 +21,7 @@ public class VehiclesController : Controller
     // GET: Vehicles
     public async Task<IActionResult> Index(string? searchString)
     {
-        var model = _mapper.ProjectTo<VehicleIndexViewModel>(_context.Vehicles.Where(vehicle=> (searchString == null || vehicle.RegNo.Contains(searchString))))
+        var model = _mapper.ProjectTo<VehicleViewModel>(_context.Vehicles.Where(vehicle=> (searchString == null || vehicle.RegNo.Contains(searchString))))
             .OrderBy(s => s.Id);
         //.Take(10);
         return View(await model.ToListAsync());
