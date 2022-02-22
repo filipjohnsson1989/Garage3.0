@@ -15,7 +15,7 @@ public class ParkingSpotService : IParkingSpotService
     }
 
     public async Task<IEnumerable<SelectListItem>> GetParkingSpots(int? selectedId)
-        => await _context.ParkingSpots.Select(parkingSpot => new SelectListItem() { Text = parkingSpot.SpotNumber, Value = parkingSpot.Id.ToString(), Selected = parkingSpot.Id == selectedId, Disabled = (parkingSpot.ParkingActivitys.FirstOrDefault() != null) }).ToListAsync();
+        => await _context.ParkingSpots.Select(parkingSpot => new SelectListItem() { Text = parkingSpot.SpotNumber, Value = parkingSpot.Id.ToString(), Selected = parkingSpot.Id == selectedId, Disabled = (parkingSpot.ParkingActivitys.Where(parkingActivitys=> !parkingActivitys.CheckOut.HasValue).FirstOrDefault() != null) }).ToListAsync();
 
 
 
