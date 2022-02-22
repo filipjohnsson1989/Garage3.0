@@ -3,11 +3,18 @@
 @using Garage3._0.Web.Services
 @inject IParkingSpotService service
 
-<select class="form-control" asp-for="Id" asp-items="@await service.GetParkingSpots(Model is null? null: Model.Id)">
+<select class="form-control parkingSpot" asp-for="Id" asp-items="@await service.GetParkingSpots(Model is null? null: Model.Id)">
     @if (Model is null)
     {
         <option selected="selected" value="">Choose an spot</option>
 
     }
 </select>
+<style>
+    .parkingSpot>option:disabled
+    {
+        color:red;
+    }
+
+</style>
 
