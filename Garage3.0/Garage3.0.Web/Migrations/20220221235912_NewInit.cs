@@ -15,8 +15,10 @@ namespace Garage3._0.Web.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PersonNr = table.Column<int>(type: "int", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false, computedColumnSql: "[FirstName] + ' ' + [LastName]"),
+                    PersonNr = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -61,15 +63,15 @@ namespace Garage3._0.Web.Migrations
                     Brand = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Model = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MemberEntityId = table.Column<int>(type: "int", nullable: false),
+                    MemberId = table.Column<int>(type: "int", nullable: false),
                     VehicleTypeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Vehicles", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Vehicles_Members_MemberEntityId",
-                        column: x => x.MemberEntityId,
+                        name: "FK_Vehicles_Members_MemberId",
+                        column: x => x.MemberId,
                         principalTable: "Members",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -90,40 +92,40 @@ namespace Garage3._0.Web.Migrations
                     CheckIn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CheckOut = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ParkingCost = table.Column<double>(type: "float", nullable: true),
-                    VehicleEntityId = table.Column<int>(type: "int", nullable: false),
-                    ParkingSpotEntityId = table.Column<int>(type: "int", nullable: false)
+                    VehicleId = table.Column<int>(type: "int", nullable: false),
+                    ParkingSpotId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ParkingActivities", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ParkingActivities_ParkingSpots_ParkingSpotEntityId",
-                        column: x => x.ParkingSpotEntityId,
+                        name: "FK_ParkingActivities_ParkingSpots_ParkingSpotId",
+                        column: x => x.ParkingSpotId,
                         principalTable: "ParkingSpots",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ParkingActivities_Vehicles_VehicleEntityId",
-                        column: x => x.VehicleEntityId,
+                        name: "FK_ParkingActivities_Vehicles_VehicleId",
+                        column: x => x.VehicleId,
                         principalTable: "Vehicles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ParkingActivities_ParkingSpotEntityId",
+                name: "IX_ParkingActivities_ParkingSpotId",
                 table: "ParkingActivities",
-                column: "ParkingSpotEntityId");
+                column: "ParkingSpotId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ParkingActivities_VehicleEntityId",
+                name: "IX_ParkingActivities_VehicleId",
                 table: "ParkingActivities",
-                column: "VehicleEntityId");
+                column: "VehicleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vehicles_MemberEntityId",
+                name: "IX_Vehicles_MemberId",
                 table: "Vehicles",
-                column: "MemberEntityId");
+                column: "MemberId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Vehicles_VehicleTypeId",

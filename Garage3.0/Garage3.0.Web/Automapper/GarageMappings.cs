@@ -9,9 +9,16 @@ public class GarageMappings : Profile
     public GarageMappings()
     {
         CreateMap<MemberEntity, MemberCreateViewModel>().ReverseMap();
-        CreateMap<VehicleEntity, VehicleIndexViewModel>();
         CreateMap<MemberEntity, MemberIndexViewModel>();
+        CreateMap<MemberViewModel, MemberEntity>().ReverseMap();
+        CreateMap<VehicleTypeViewModel, VehicleTypeEntity>().ReverseMap();
+        CreateMap<VehicleEntity, VehicleViewModel>().ReverseMap();
         CreateMap<VehicleCreateViewModel, VehicleEntity>();
+        CreateMap<VehicleEditViewModel, VehicleEntity>().ReverseMap();
+        CreateMap<ParkingSpotViewModel, ParkingSpotEntity>().ReverseMap();
+        CreateMap<ParkingActivityCheckInViewModel, ParkingActivityEntity>();
+        CreateMap<ParkingActivityEntity, ParkingActivityIndexViewModel>();
+        CreateMap<ParkingActivityEntity, ParkingActivityCheckOutViewModel>();
 
     }
 }

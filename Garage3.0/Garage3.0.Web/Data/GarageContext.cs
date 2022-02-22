@@ -25,6 +25,10 @@ public class GarageContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<MemberEntity>()
+               .Property(u => u.Name)
+               .HasComputedColumnSql("[FirstName] + ' ' + [LastName]");
+
         modelBuilder.Entity<VehicleEntity>()
             .HasOne(v => v.VehicleType)
             .WithMany(vt => vt.Vehicles)
@@ -33,6 +37,18 @@ public class GarageContext : DbContext
             .HasOne(v => v.Member)
             .WithMany(m => m.Vehicles)
             .IsRequired();
+
+        modelBuilder.Entity<ParkingActivityEntity>()
+            .HasOne(pa => pa.ParkingSpot)
+            .WithMany(v => v.ParkingActivitys)
+            .HasForeignKey(pa => pa.ParkingSpotId)
+            .IsRequired();
+
+        modelBuilder.Entity<ParkingActivityEntity>()
+           .HasOne(pa => pa.Vehicle)
+           .WithMany(v => v.ParkingActivitys)
+           .HasForeignKey(pa => pa.VehicleId)
+           .IsRequired();
         //base.OnModelCreating(modelBuilder); 
     }
 }

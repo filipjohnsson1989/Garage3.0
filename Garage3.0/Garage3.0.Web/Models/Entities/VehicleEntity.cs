@@ -16,12 +16,12 @@ public class VehicleEntity
 
 #nullable disable
     // Nav Prop
-    public int MemberEntityId { get; set; }
+    //public int MemberId { get; set; }
     public MemberEntity Member { get; set; }
-    public int VehicleTypeId { get; set; }
+    //public int VehicleTypeId { get; set; }
     public VehicleTypeEntity VehicleType { get; set; }
 
-    //public ICollection<ParkingActivityEntity> ParkingActivityEntities { get; set; }
+    public ICollection<ParkingActivityEntity> ParkingActivitys { get; set; }
 
 
 }
