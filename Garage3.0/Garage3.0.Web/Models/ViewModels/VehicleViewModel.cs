@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Garage3._0.Web.Models.ViewModels;
 
@@ -8,6 +7,7 @@ namespace Garage3._0.Web.Models.ViewModels;
 
 public class VehicleViewModel
 {
+    [Required]
     public int Id { get; set; }
     [Display(Name = "Member")]
     public string MemberName { get; set; }
@@ -19,8 +19,6 @@ public class VehicleViewModel
 
     public string Model { get; set; }
 
-
-#nullable enable
     public string? Color { get; set; }
 
 

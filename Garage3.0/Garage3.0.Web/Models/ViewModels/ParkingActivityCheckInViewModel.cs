@@ -5,7 +5,7 @@ namespace Garage3._0.Web.Models.ViewModels;
 public class ParkingActivityCheckInViewModel
 {
     [Required]
-    [Display(Name = "ParkingSpot")]
+    [Display(Name = "Spot Number")]
     public ParkingSpotViewModel ParkingSpot { get; set; }
 
     [Required]
